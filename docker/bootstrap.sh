@@ -48,7 +48,7 @@ NODE
   echo "[bootstrap] OpenClaw version: $(openclaw --version)"
   echo "[bootstrap] OpenClaw home: $OPENCLAW_HOME"
   export TMPDIR
-  exec gosu node "$@"
+  exec su -s /bin/sh node -c 'exec "$@"' -- "$@"
 fi
 
 mkdir -p "$OPENCLAW_HOME/state" "$OPENCLAW_HOME/sessions" "$OPENCLAW_HOME/memory" "$OPENCLAW_HOME/logs" "$OPENCLAW_HOME/workspace" "$TMPDIR"
