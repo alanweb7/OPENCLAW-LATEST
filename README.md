@@ -62,6 +62,7 @@ Paths persistidos (explicitos):
 - `./data/openclaw/memory/` (memoria)
 - `./data/openclaw/logs/` (logs)
 - `./data/openclaw/workspace/` (workspace/artefatos)
+- `./data/openclaw/tmp/` (cache temporario para plugins/jiti)
 
 Teste de persistencia:
 
@@ -143,6 +144,7 @@ Para usar rede externa existente:
 ```dotenv
 OPENCLAW_NETWORK_EXTERNAL=true
 OPENCLAW_NETWORK_NAME=minha-rede-existente
+OPENCLAW_CONTROLUI_ALLOWED_ORIGINS=https://openclaw.seudominio.com
 ```
 
 2. Garanta que a rede ja exista:

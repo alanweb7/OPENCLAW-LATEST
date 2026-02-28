@@ -5,6 +5,7 @@ ARG OPENCLAW_VERSION=2026.2.26
 ENV OPENCLAW_VERSION=${OPENCLAW_VERSION}
 ENV OPENCLAW_HOME=/home/node/.openclaw
 ENV OPENCLAW_GATEWAY_PORT=18789
+ENV TMPDIR=/home/node/.openclaw/tmp
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends ca-certificates curl git gosu tini \
@@ -18,6 +19,7 @@ COPY docker/healthcheck.sh /usr/local/bin/healthcheck.sh
 RUN chmod +x /usr/local/bin/bootstrap.sh /usr/local/bin/healthcheck.sh
 
 RUN mkdir -p ${OPENCLAW_HOME} \
+  && chmod 1777 /tmp \
   && chown -R node:node /home/node
 
 USER root
