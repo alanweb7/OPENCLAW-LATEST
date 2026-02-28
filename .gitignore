@@ -1,4 +1,0 @@
-# Ignore local runtime data and secrets
-.env
-data/
-backups/

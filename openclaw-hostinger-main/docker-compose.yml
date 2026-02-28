@@ -1,0 +1,27 @@
+services:
+  openclaw:
+    image: watink/openclaw:latest
+    container_name: openclaw
+    restart: unless-stopped
+    depends_on:
+      - sandbox
+    environment:
+      TZ: ${TZ}
+      NODE_ENV: production
+      OPENCLAW_DISABLE_BONJOUR: "1"
+      OPENCLAW_GATEWAY_BIND: lan
+      OPENCLAW_GATEWAY_TOKEN: ${OPENCLAW_GATEWAY_TOKEN}
+      OPENCLAW_SANDBOX_HOST: sandbox
+    command: ["openclaw", "gateway", "--port", "${OPENCLAW_PORT}", "--allow-unconfigured"]
+    ports:
+      - "${OPENCLAW_PORT}:18789"
+      - "${CANVAS_PORT}:18793"
+    volumes:
+      - ./data:/home/openclaw/.openclaw
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  sandbox:
+    image: watink/openclaw-sandbox:bookworm-slim
+    container_name: openclaw-sandbox
+    restart: unless-stopped
+    command: ["sleep", "infinity"]
