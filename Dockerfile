@@ -7,8 +7,9 @@ ENV OPENCLAW_HOME=/home/node/.openclaw
 ENV OPENCLAW_GATEWAY_PORT=18789
 ENV TMPDIR=/home/node/.openclaw/tmp
 
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends ca-certificates curl git tini \
+RUN chmod 1777 /tmp \
+  && apt-get update || apt-get update \
+  && apt-get install -y --no-install-recommends ca-certificates git tini \
   && rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g --omit=dev "openclaw@${OPENCLAW_VERSION}" \
