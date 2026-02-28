@@ -171,6 +171,12 @@ Se `openclaw status` falhar:
 - verificar config em `./data/openclaw/openclaw.json`
 - recriar servico: `./scripts/deploy.sh restart`
 
+Se aparecer `Permission denied` em `/home/node/.openclaw/*`:
+
+- ajustar owner no host Linux: `sudo chown -R 1000:1000 data/openclaw`
+- ajustar permissoes: `sudo chmod -R u+rwX,go-rwx data/openclaw`
+- subir novamente: `./scripts/deploy.sh up`
+
 ## Publicar no GitHub
 
 ```bash

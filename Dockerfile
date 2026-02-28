@@ -7,7 +7,7 @@ ENV OPENCLAW_HOME=/home/node/.openclaw
 ENV OPENCLAW_GATEWAY_PORT=18789
 
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends ca-certificates curl git tini \
+  && apt-get install -y --no-install-recommends ca-certificates curl git gosu tini \
   && rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g --omit=dev "openclaw@${OPENCLAW_VERSION}" \
@@ -20,7 +20,7 @@ RUN chmod +x /usr/local/bin/bootstrap.sh /usr/local/bin/healthcheck.sh
 RUN mkdir -p ${OPENCLAW_HOME} \
   && chown -R node:node /home/node
 
-USER node
+USER root
 WORKDIR /home/node
 
 EXPOSE 18789
